@@ -1,58 +1,58 @@
 const products = [
-{
-    createdAt: -1728980000,
-    name: "Small Granite Towels 2",
-    image: "https://m.media-amazon.com/images/I/81nUrDsMtWL._AC_SX679_.jpg",
-    price: 857,
+    {
+    createdAt: -172800000,
+    name: "nike Juniper Trail 2 GORE-TEX PRO",
+    image: "https://nikearprod.vtexassets.com/arquivos/ids/877894-1200-1200?width=1200&height=1200&aspect=true",
+    price: 199999,
     description: "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
     category: "mountain",
     id: "38"
-},
-{
+  },
+  {
     createdAt: 1717113600000,
-    name: "Nuevo Producto",
-    image: "https://bingo-electros.myshopify.com/cdn/shop/articles/13_d6377b2e-3b9e-41b6-bebf-40217c19635f_520x356.jpg?v=1515847485",
-    price: 10000,
-    description: "dasdasdasd sad sadsadas dsad asdas dasdas",
-    category: "mountain",
+    name: "Clifton 9",
+    image: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1660043072-hoka-bondi-8-zapatillas-running-1660043036.png?crop=1.00xw:0.823xh;0,0.0783xh&resize=980:*",
+    price: 100000,
+    description: "La novena versión de nuestra galardonada gama Clifton ofrece una versión más ligera y con más amortiguación que nunca. Las nuevas Clifton 9 reducen el peso al tiempo que añaden 3 mm de altura; además, ofrecen una experiencia revitalizada bajo los pies con una nueva espuma con capacidad de respuesta y un diseño de suela mejorado",
+    category: "running",
     id: "43"
-},
-{
+  },
+  {
     createdAt: 1716076800000,
-    name: "prueba1",
-    image: "https://fullh4rd.com.ar/img/productos/8/teclado-gamer-redragon-k669-ziggs-rgb-espaol-0.jpg",
-    price: 13651,
-    description: "Test de imagennnnnnn",
-    category: "sports",
-    id: "44"
-},
-{
-    createdAt: -2707653600000,
-    name: "Batman toy",
-    image: "https://mystickermania.com/cdn/stickers/chibi-marvel-dc-comics/dc-chibi-batman-512x512.png",
-    price: 10000,
-    description: "chibi batman",
+    name: "Ánvencible 3 pro",
+    image: "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/28810afe-6b6a-4f6a-beb4-701a3539bb02/invincible-3-zapatillas-de-running-asfalto-9lqlcK.png",
+    price: 365100,
+    description: "Test de imagenmmmmmm",
+    category: "running",
+    id: "44",
+  },
+  {
+    createdAt: -27076636800000,
+    name: "Nike Air Force 1 07",
+    image: "https://nikearprod.vtexassets.com/arquivos/ids/659742-1200-1200?width=1200&height=1200&aspect=true",
+    price: 209999,
+    description: "La luminosidad sigue viva con este calzado de básquetbol original. La fusión de la comodidad de la duela y un estilo externo a la cancha le da un giro fresco a lo que mejor conoces: una confección inspirada en los años 80, detalles audaces y un estilo basquetbolero puro.",
     category: "moda",
     id: "46"
-},
-{
-    createdAt: "",
-    name: "Prueba",
-    image: "https://hips.hearstapps.com/hmg-prod/images/el-gato-con-botas-1551289404.jpg?crop=1.00xw:0.753xh;0,0.0969xh&resize=2048:*",
-    price: 13650,
-    description: "8",
+  },
+  {
+    createdAt: 1719276313261,
+    name: "Nike Pegasus 39 Shield",
+    image: "https://static.nike.com/a/images/t_default/c7cee966-efba-4fc4-99ce-ab2ccacf9f81/infinityrn-4-gore-tex-zapatillas-de-running-asfalto-impermeables-BcdT0P.png",
+    price: 167999,
+    description: "Tu caballo alado regresa para ayudarte a avanzar bajo la lluvia. El acabado repelente al agua te ayuda a mantener los pies secos, mientras que una sensación cómoda, similar al tejido Fleece, en el interior mantiene los pies abrigados para carreras en climas",
     category: "running",
     id: "47"
-},
-{
-    createdAt: 882921600000,
-    name: "Nuevo producto",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Bandera_del_Club_Atl%C3%A9tico_Independiente.svg/2560px-Bandera_del_Club_Atl%C3%A9tico_Independiente.svg.png",
-    price: 1000,
-    description: "el rojo",
-    category: "sports",
+  },
+  {
+    createdAt: 1648598400000,
+    name: "Nike SB Dunk Low Pro",
+    image: "https://nikearprod.vtexassets.com/arquivos/ids/914361-1200-1200?width=1200&height=1200&aspect=true",
+    price: 209000,
+    description: "El Nike SB Dunk Low Pro ofrece el aspecto icónico del Dunk con un estilo de perfil bajo. La unidad Zoom Air en el talón y la lengüeta acolchada proporcionan un nivel de comodidad ideal para practicar skate.",
+    category: "moda",
     id: "48"
-}
+  }
 ]
 
 const tableBodyHTML = document.getElementById(`table-body`)
@@ -72,7 +72,7 @@ products.forEach((prod) => {
 
         <td class="product-description">
         <div class="description" title="${prod.description}">
-        ${prod.description}
+        ${prod.description} 
         </div>
             
         </td>
