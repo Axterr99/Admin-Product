@@ -56,11 +56,22 @@ const products = [
 ]
 
 const tableBodyHTML = document.getElementById(`table-body`)
+const formAdminHTML = document.getElementById(`form-admin`)
 
-console.log(tableBodyHTML)
+// pintar todos los elementos inicialmente
+renderProducts(products)
 
 //Recorrer el array y hacer un console.log de cada producto
-products.forEach((prod) => {
+function renderProducts(ARRAY_TO_RENDER) {
+
+  tableBodyHTML.innerHTML = ` `
+
+  let total = 0
+
+  ARRAY_TO_RENDER.forEach((prod) => {
+
+    total += prod.price
+
     tableBodyHTML.innerHTML += `<tr>
         <td class="product-image">
             <img src="${prod.image}" alt="">
@@ -78,20 +89,91 @@ products.forEach((prod) => {
         </td>
 
         <td class="product-date">
-            ${prod.createdAt}
+            ${formatTimeStampToDate(prod.createdAt)}
         </td>
 
         <td class="product-price">
-            $ ${prod.price}
+            $${prod.price}
         </td>
 
         <td class="product-actions">
             <button class="btn btn-primary btn-sm"><i class="fa-regular fa-pen-to-square"></i></button>
-            <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+
+            <button class="btn btn-danger btn-sm" onclick="deleteProduct('${prod.id}')"><i class="fa-solid fa-trash-can"></i></button>
         </td>
     </tr>`
 })
+tableBodyHTML.innerHTML += `<tr> <td colspan="4">TOTAL</td> <td colspan="2" class="fw-bold">$${total}</td></tr>` 
+
+}
 
 
 
+// Llamar una funcion especifica para borrar productos
+function deleteProduct(identificador) {
 
+  // Obtenes el id del producto a eliminar
+  console.log("id recibido", identificador)
+
+  // Poder identificar el indice del producto a eliminar a traves  de algun metodo
+  const index = products.findIndex((producto) => {
+
+    // Condicion yo return un true
+    if(identificador === producto.id) {
+      return true
+    } else {
+      return false
+    }
+  })
+
+  // Eliminar el producto del array con splice en base a su ubicacion
+
+  products.splice(index, 1)
+
+  renderProducts(products)
+  console.log(products)
+  console.log(products.length)
+}
+
+function searchProduct(evt) {
+  // Recibo un evento en este caso del tipo oninput
+  const text = evt.target.value.toLowerCase()
+
+  // Primero tengo que buscar en mi array los elementos que tengan como valor Name el texto que la persona a escrito
+  const productosFiltrados = products.filter((PRODUCTITO) => {
+    const name = PRODUCTITO.name.toLowerCase()
+    const descripcion = PRODUCTITO.description.toLowerCase()
+
+    if(name.includes(text) || descripcion.includes(text) ) {
+      return true
+    } else {
+      return false
+    }
+  })
+
+  renderProducts(productosFiltrados)
+}
+
+formAdminHTML.addEventListener(`submit`, (evt) => {
+  // Prevenimos el comportamiento por defecto del formulario
+  evt.preventDefault()
+
+  const el = evt.target.elements
+
+  const nuevoProducto = {
+    name: el.name.value,
+    price: el.price.valueAsNumber,
+    category: el.category.value,
+    description: el.description.value,
+    image: el.image.value,
+    createdAt: el.date.valueAsNumber,
+    id: crypto.randomUUID()
+    }
+
+    console.log(nuevoProducto)
+
+    products.push(nuevoProducto)
+    renderProducts(products)
+
+    formAdminHTML.reset()
+})

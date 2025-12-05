@@ -25,6 +25,48 @@
             <div class="col-12 col-lg-4">
                 <div class="p-3">
                     <h2>Formulario</h2>
+\                   <form class="w-100 px-2" id="form-admin">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre producto</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Nombre Producto">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="price" class="price">Precio</label>
+                            <input type="number" name="price" id="price" class="form-control">
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="date" class="form-label">Fecha de Carga</label>
+                                <input type="date" id="date" name="createdAt" class="form-control">
+                            </div>
+
+                            <div class="col">
+                                <label for="category" class="form-label">Categoria</label>
+                                <select name="category" id="category" class="form-select">
+                                <option value="mountain">Montania</option>
+                                <option value="running">Zapatilla correr</option>
+                                <option value="trainning">Entrenamiento</option>
+                                <option value="moda">Moda</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Imagen</label>
+                            <input type="url" name="image" id="image" class="form-control">
+                        </div>
+                            
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descripcion</label>
+                            <textarea name="form-control" name="description" id="description"></textarea>
+                        </div>
+
+                        <div>
+                            <button class="btn btn-primary" type="submit">Agregar producto</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -32,7 +74,14 @@
                 <div class="p-3">
                     <h2>Tabla De Productos</h2>
 
-                    <table class="table table-primary table-striped table-admin">
+                    <div class="mb-3">
+
+                        <label for="search" class="form-label">Buscar</label>
+                        <input type="text" class="form-control" onkeyup="searchProduct(event)">
+                    </div>
+
+                    <div class="table-container">
+                        <table class="table table-primary table-striped table-admin">
                         <thead>
                             <th>Imagen</th>
                             <th>Nombre</th>
@@ -45,12 +94,14 @@
                             
                         </tbody>
                     </table>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 
-
+<script src="utils/date.js"></script>
 <script src="js/product-admin.js"></script>
 </body>
 </html>
