@@ -19,3 +19,19 @@ function formatTimeStampToDate(fecha) {
 
     // return `${day}/${month}/${year}`
 }
+
+function formatTimeStampToInputDate(date) {
+    // const fecha = new Date(date)
+
+    // const year = fecha.getFullYear()
+
+    // const month = fecha.getMonth()
+
+    const collator = new Intl.DateTimeFormat('en-CA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    })
+
+    return collator.format(date)
+}

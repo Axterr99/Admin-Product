@@ -97,9 +97,13 @@ function renderProducts(ARRAY_TO_RENDER) {
         </td>
 
         <td class="product-actions">
-            <button class="btn btn-primary btn-sm"><i class="fa-regular fa-pen-to-square"></i></button>
+            <button class="btn btn-primary btn-sm" onclick="editProduct('${prod.id}')">
+            <i class="fa-regular fa-pen-to-square"></i>
+            </button>
 
-            <button class="btn btn-danger btn-sm" onclick="deleteProduct('${prod.id}')"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="btn btn-danger btn-sm" onclick="deleteProduct('${prod.id}')">
+            <i class="fa-solid fa-trash-can"></i>
+            </button>
         </td>
     </tr>`
 })
@@ -177,3 +181,29 @@ formAdminHTML.addEventListener(`submit`, (evt) => {
 
     formAdminHTML.reset()
 })
+
+function editProduct(idUpdate) {
+
+  console.log("Id para actualizar", idUpdate)
+  // Deberia buscar los datos del producto indicado por ID
+  const productoEditar = products.find(producto => {
+
+    if(idUpdate === producto.id){
+      return true
+    }
+    // para que find encuentre el elemento que buscamos y lo retonre o guarde en la variable "productoEditar"  tenemos que retornar un true
+  })
+
+  const elem = formAdminHTML.elements
+  // Rellenar el formulario con esos datos
+  elem.name.value = productoEditar.name
+  elem.price.value = productoEditar.price
+  elem.description.value = productoEditar.description
+  elem.category.value = productoEditar.category
+  elem.image.value = productoEditar.image
+  elem.createdAt.value = formatTimeStampToInputDate(productoEditar.createdAt)
+
+
+  // Modificar el boton agregar por un boton que diga editar
+  // Definir un mecanismo para saber que cuando se haga el submit poder definir si es un producto o estoy editando
+}
