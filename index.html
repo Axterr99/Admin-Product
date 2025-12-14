@@ -26,6 +26,7 @@
                 <div class="p-3">
                     <h2>Formulario</h2>
                     <form class="w-100 px-2" id="form-admin">
+                        <input type="hidden" name="id">
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre producto</label>
                             <input type="text" id="name" name="name" class="form-control" placeholder="Nombre Producto">
@@ -72,13 +73,26 @@
 
             <div class="col-12 col-lg-8">
                 <div class="p-3">
-                    <h2>Tabla De Productos</h2>
+                    <h2 contenteditable="true">Tabla De Productos</h2>
 
-                    <div class="mb-3">
+                    <div class="row d-flex align-items-end mb-3">
+                        <div class="col-10">
+                                <label for="search" class="form-label">Buscar</label>
+                                <input type="text" class="form-control" id="task" oninput="searchProduct(event)">
+                        </div>
 
-                        <label for="search" class="form-label">Buscar</label>
-                        <input type="text" class="form-control" onkeyup="searchProduct(event)">
+                        <div class="col-2">
+                            <button class="btn btn-primary" data-sort="desc">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </button>
+
+                            <button class="btn btn-primary" data-sort="desc">
+                                <i class="fa-solid fa-caret-up"></i>
+                            </button>
+                        </div>
                     </div>
+
+                    
 
                     <div class="table-container">
                         <table class="table table-primary table-striped table-admin">

@@ -57,6 +57,20 @@ const products = [
 
 const tableBodyHTML = document.getElementById(`table-body`)
 const formAdminHTML = document.getElementById(`form-admin`)
+const btnSumbitHTML = formAdminHTML.querySelector(`button[type='submit']`)
+const btnsSortHTML = document.querySelectorAll(`button[data-sort]`)
+
+btnsSortHTML.forEach(btn => {
+  btn.addEventListener('click', (evt) => {
+    products.sort((a, b) => {
+        if(a.name > b.name) return -1;
+        if(a.name < b.name) return 1;
+        return 0
+    })
+
+    renderProducts(products)
+  })
+})
 
 // pintar todos los elementos inicialmente
 renderProducts(products)
@@ -111,13 +125,20 @@ tableBodyHTML.innerHTML += `<tr> <td colspan="4">TOTAL</td> <td colspan="2" clas
 
 }
 
-
-
 // Llamar una funcion especifica para borrar productos
 function deleteProduct(identificador) {
 
   // Obtenes el id del producto a eliminar
   console.log("id recibido", identificador)
+
+  const resultado = confirm("Realmente desea borrar el producto?")
+
+
+  // el ! sirve para dar vuelta el resultado. Resultado = True 
+  //                                        . !Resultado = False
+  if(!resultado) {
+    return
+  }
 
   // Poder identificar el indice del producto a eliminar a traves  de algun metodo
   const index = products.findIndex((producto) => {
@@ -139,6 +160,7 @@ function deleteProduct(identificador) {
   console.log(products.length)
 }
 
+// Buscar produtos
 function searchProduct(evt) {
   // Recibo un evento en este caso del tipo oninput
   const text = evt.target.value.toLowerCase()
@@ -164,22 +186,46 @@ formAdminHTML.addEventListener(`submit`, (evt) => {
 
   const el = evt.target.elements
 
+  const idInput = el.id.value
+
+  // const ID = id ? id : crypto.randomUUID() 
+
   const nuevoProducto = {
     name: el.name.value,
-    price: el.price.valueAsNumber,
+    price: el.price.valueAsNumber || 0, 
     category: el.category.value,
     description: el.description.value,
     image: el.image.value,
     createdAt: el.date.valueAsNumber,
-    id: crypto.randomUUID()
+    id: idInput ? id : crypto.randomUUID()
     }
 
     console.log(nuevoProducto)
+ 
+    if(idInput) {
+      // Busco la posicion del elemento que edite y lo actualizo (remplazo)
+      // const index = products.findIndex(prod => prod.id === id)
 
-    products.push(nuevoProducto)
+      const indice = products.findIndex(prod => {
+        if(id === prod.id) {
+          return true
+        }
+      })
+
+      products[indice] = nuevoProducto
+    } else {
+      // Sumo el elemento al array porque es un elemento nuevo
+      products.push(nuevoProducto)
+    }
+
+    el.id.value = ''
+
     renderProducts(products)
 
     formAdminHTML.reset()
+    btnSumbitHTML.innerHTML = "Agregar producto"
+    btnSumbitHTML.classList.remove("btn-success")
+    el.name.focus()
 })
 
 function editProduct(idUpdate) {
@@ -194,13 +240,21 @@ function editProduct(idUpdate) {
     // para que find encuentre el elemento que buscamos y lo retonre o guarde en la variable "productoEditar"  tenemos que retornar un true
   })
 
+  btnSumbitHTML.innerHTML = "Editar Producto"
+  btnSumbitHTML.classList.add("btn-success")
+  // btnSumbitHTML.classList.remove("btn")
+  // btnSumbitHTML.classList.contains("btn-primary") // True o false
+
   const elem = formAdminHTML.elements
+
   // Rellenar el formulario con esos datos
+  elem.id.value = productoEditar.id
   elem.name.value = productoEditar.name
   elem.price.value = productoEditar.price
   elem.description.value = productoEditar.description
   elem.category.value = productoEditar.category
   elem.image.value = productoEditar.image
+  // Transformamos el formato timestamp milisegundos a un formato compatible con el input date (CreatedAt) "yyyy-mm-dd"
   elem.createdAt.value = formatTimeStampToInputDate(productoEditar.createdAt)
 
 
